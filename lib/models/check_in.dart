@@ -1,44 +1,44 @@
-class ClassSession {
+class CheckIn {
   final String id;
-  final String name;
-  final DateTime startTime;
-  final DateTime endTime;
-  final String instructor;
-  final String? description;
-  final int capacity;
+  final String memberId;
+  final String classSessionId;
+  final DateTime timestamp;
+  final CheckInStatus status;
 
-  ClassSession({
+  CheckIn({
     required this.id,
-    required this.name,
-    required this.startTime,
-    required this.endTime,
-    required this.instructor,
-    this.description,
-    required this.capacity,
+    required this.memberId,
+    required this.classSessionId,
+    required this.timestamp,
+    this.status = CheckInStatus.confirmed,
   });
 
-  factory ClassSession.fromJson(Map<String, dynamic> json) {
-    return ClassSession(
+  factory CheckIn.fromJson(Map<String, dynamic> json) {
+    return CheckIn(
       id: json['id'] as String,
-      name: json['name'] as String,
-      startTime: DateTime.parse(json['startTime'] as String),
-      endTime: DateTime.parse(json['endTime'] as String),
-      instructor: json['instructor'] as String,
-      description: json['description'] as String?,
-      capacity: json['capacity'] as int,
+      memberId: json['memberId'] as String,
+      classSessionId: json['classSessionId'] as String,
+      timestamp: DateTime.parse(json['timestamp'] as String),
+      status: CheckInStatus.values.firstWhere(
+        (e) => e.toString().split('.').last == json['status'],
+        orElse: () => CheckInStatus.confirmed,
+      ),
     );
   }
 
-  String get timeRange {
-    final start = '${startTime.hour.toString().padLeft(2, '0')}:${startTime.minute.toString().padLeft(2, '0')}';
-    final end = '${endTime.hour.toString().padLeft(2, '0')}:${endTime.minute.toString().padLeft(2, '0')}';
-    return '$start - $end';
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'memberId': memberId,
+      'classSessionId': classSessionId,
+      'timestamp': timestamp.toIso8601String(),
+      'status': status.toString().split('.').last,
+    };
   }
+}
 
-  bool get isToday {
-    final now = DateTime.now();
-    return startTime.year == now.year &&
-        startTime.month == now.month &&
-        startTime.day == now.day;
-  }
+enum CheckInStatus {
+  confirmed,
+  registered,
+  waitlisted,
 }
