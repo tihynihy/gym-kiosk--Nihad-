@@ -1,0 +1,29 @@
+[
+    {
+      "id": "class1",
+      "name": "Morning Yoga",
+      "startTime": "2024-01-15T08:00:00",
+      "endTime": "2024-01-15T09:00:00",
+      "instructor": "Lisa Anderson",
+      "description": "Start your day with gentle yoga",
+      "capacity": 20
+    },
+    {
+      "id": "class2",
+      "name": "HIIT Training",
+      "startTime": "2024-01-15T10:00:00",
+      "endTime": "2024-01-15T11:00:00",
+      "instructor": "Mike Thompson",
+      "description": "High-intensity interval training",
+      "capacity": 15
+    },
+    {
+      "id": "class3",
+      "name": "Evening Pilates",
+      "startTime": "2024-01-15T18:00:00",
+      "endTime": "2024-01-15T19:00:00",
+      "instructor": "Sophie Martin",
+      "description": "Core strengthening and flexibility",
+      "capacity": 25
+    }
+  ]
