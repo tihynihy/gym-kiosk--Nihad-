@@ -21,7 +21,7 @@ class DataService {
       final List<dynamic> jsonData = json.decode(jsonString);
       return jsonData  
           .map((json) => ClassSession.fromJson(json))
-          .where((session) => session.isToday)
+          //.where((session) => session.isToday)
           .toList()
         ..sort((a, b) => a.startTime.compareTo(b.startTime));
     } catch (e) {

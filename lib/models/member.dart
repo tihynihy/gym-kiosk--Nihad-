@@ -2,23 +2,23 @@ class Member {
   final String id;
   final String firstName;
   final String lastName;
-  final String profilePicture;
+  final String? profilePicture;  // Changed to nullable
 
   Member({
     required this.id,
     required this.firstName,
     required this.lastName,
-    required this.profilePicture,
+    this.profilePicture,  // Changed to optional
   });
 
   String get fullName => '$firstName $lastName';
 
   factory Member.fromJson(Map<String, dynamic> json) {
     return Member(
-      id: json['id'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      profilePicture: json['profilePicture'],
+      id: json['id'] as String,
+      firstName: json['firstName'] as String,
+      lastName: json['lastName'] as String,
+      profilePicture: json['profilePicture'] as String?,  
     );
   }
 
